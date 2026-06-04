@@ -38,31 +38,6 @@ Headroom helps you reduce the cost and latency of LLM applications by intelligen
 go get github.com/headroom-ai/headroom-go
 ```
 
-### SDK Usage
-
-```go
-package main
-
-import (
-	"fmt"
-	"github.com/headroom-ai/headroom-go/pkg/compress"
-	"github.com/headroom-ai/headroom-go/pkg/models"
-)
-
-func main() {
-	messages := []models.Message{
-		{Role: "user", Content: "Analyze this very long document... [huge content]"},
-	}
-
-	result, err := compress.DefaultCompress(messages, "gpt-4o")
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("Saved %d tokens (%.2f%% reduction)\n", result.TokensSaved, result.CompressionRatio*100)
-}
-```
-
 ## Agent Integration (MCP)
 
 Headroom Go includes a built-in MCP server to allow AI agents to compress their own context.
@@ -81,7 +56,7 @@ Add to your `mcp_config.json` (using the absolute path to the binary):
 {
   "mcpServers": {
     "headroom-go": {
-      "command": "/home/titu/sources/go-workspace/headroom-go/headroom-go/bin/headroom-mcp",
+      "command": "{path-to-headroom-mcp-cli}",
       "args": []
     }
   }
